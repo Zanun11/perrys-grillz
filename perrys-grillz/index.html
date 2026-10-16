@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PERRY'S GRILLZ — Fish Deli & Fresh Food</title>
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar-in">
+      <div class="brand"><div class="brand-mark"><img src="src/images/logo.png" alt="PERRY'S GRILLZ logo" /></div><div>PERRY'S GRILLZ<small>Fish Deli & Fresh Food</small></div></div>
+      <nav class="links">
+  <a href="#homeSec">Home</a>
+  <a href="#menuSec">Menu</a>
+  <a href="#menuSec" onclick="openDrawer(true)">Order Online</a>
+  <a href="#reserveSec">Reserve</a>
+  <a href="#reviewsSec">Reviews</a>
+  <a href="#visitSec">Visit</a>
+</nav>
+      <div class="top-actions">
+  <span class="kbd" id="backendPill" title="Backend status" style="display:none">🟡 Local</span>
+  <button class="btn btn-ghost btn-small" id="backendBtnEl" onclick="openBackend()" style="display:none">⚙️ Backend</button>
+  <button class="btn btn-ghost btn-small" id="authBtn" onclick="openAuth()">👤 Sign in</button>
+  <button class="btn btn-ghost btn-small" onclick="openOrders()">My Orders</button>
+  <button class="btn btn-primary btn-small cart-btn" onclick="openDrawer(true)">🛒 Cart <span class="cart-count" id="cartCountEl" style="display:none">0</span></button>
+</div>
+</div>
+  </div>
+
+  <div class="hero" id="homeSec">
+    <div class="hero-main">
+      <div class="hero-slides">
+        <img class="hero-slide active" src="src/images/hero-1.jpg" alt="Terrace dining with mountain view" fetchpriority="high" />
+        <img class="hero-slide" src="src/images/hero-2.jpg" alt="Grilled seafood with island view" loading="lazy" />
+        <img class="hero-slide" src="src/images/hero-3.jpg" alt="Fresh grilled fish and coconut" loading="lazy" />
+        <img class="hero-slide" src="src/images/fresh-coconut.jpg" alt="Fresh coconut over the valley" loading="lazy" />
+      </div>
+      <div class="hero-copy">
+        <span class="eyebrow">📍 Les Canelles Rd · Mahé · Mountain-view terrace</span>
+        <h1>Fresh catch.<br/>Creole soul.</h1>
+        <p>20 island dishes — grilled lobster, octopus, Creole curries, home-made desserts & ice-cold coconut. Order online, book a terrace table, or ask Perry our bot.</p>
+        <div class="hero-cta">
+  <button class="btn btn-coral" onclick="openDrawer(true)">🛒 Order Online</button>
+  <a href="#menuSec"><button class="btn btn-primary">Explore Menu 🍽️</button></a>
+  <a href="#reserveSec"><button class="btn btn-ghost" style="background:#fff">Book a Table</button></a>
+  <button class="btn btn-ghost" onclick="openChat(true)" style="background:#fff">Chat with Perry 💬</button>
+</div>
+        <div class="hero-dots" id="heroDotsEl"></div>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="info-card">
+        <h3>📍 Find us · 🕦 Hours</h3>
+        <div class="info-row"><div class="dot"></div><div>Les Canelles Rd, Mahé, Seychelles<br/><span class="muted">+248 252 7260 · Daily 11:00 — 22:00</span></div></div>
+        <div class="hours-grid">
+         <div class="mini-stat"><b>Island dishes</b><span>available</span></div> 
+          <div class="mini-stat"><b>4.9 ★</b><span>guest rating</span></div>
+        </div>
+      </div>
+      <div class="info-card" style="background:linear-gradient(135deg,#0d5c46,#14916f);color:#fff;border:0">
+        <h3>🔥 Right now</h3>
+        <div style="font-size:14px;opacity:.95">Grill Lobster Garlic Butter · Fish Curry · Grilled Octopus — all fired up today. Fresh coconut iced & ready.</div>
+        <div style="margin-top:10px;display:flex;gap:8px"><button class="btn btn-small" style="background:#fff;color:#0d5c46" onclick="document.getElementById('menuSec').scrollIntoView({behavior:'smooth'})">See popular</button><button class="btn btn-small" style="background:rgba(255,255,255,.2);color:#fff" onclick="openChat(true)">Ask Perry</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="menuSec">
+  <div style="background:linear-gradient(135deg,#0d5c46,#14916f);color:#fff;padding:16px;border-radius:16px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+    <div>
+      <b style="font-size:18px">🛒 Ready to order?</b>
+      <p style="margin:4px 0 0 0;font-size:14px;opacity:.9">Add dishes below, then click the Cart button to checkout. You can also just tell Perry "add lobster"!</p>
+    </div>
+    <button class="btn btn-small" style="background:#fff;color:#0d5c46" onclick="openDrawer(true)">View Cart</button>
+  </div>
+  <div class="section-head">
+      <div><h2>Island Menu 🍛</h2><p>OUR DISHES ARE AVAILABLE IN THE FOOD MENU — REQUEST FOR YOUR TASTE AT THE CHATBOT 💬 <span id="menuCountEl" class="kbd">20 dishes</span></p></div>
+      <div><button class="btn btn-ghost btn-small" onclick="openChat(true)">💬 Can't decide? Ask Perry</button></div>
+    </div>
+    <div class="toolbar">
+      <div class="pills" id="pillsEl"></div>
+      <div class="search"><input id="searchInput" placeholder="Search — try 'lobster', 'curry', 'coconut'..." /></div>
+    </div>
+    <div class="grid" id="menuGridEl"></div>
+  </div>
+
+  <div class="section split" id="reserveSec">
+    <div class="panel">
+      <h3>Book a terrace table 🌅</h3>
+      <p class="muted">Instant confirmation — saved on this device + cloud. Sunset slots fill fast.</p>
+      <form class="form" id="resFormEl">
+        <div class="form-row">
+          <div><label>Name</label><input id="resNameInput" placeholder="Your name" /></div>
+          <div><label>Phone</label><input id="resPhoneInput" placeholder="+248 ..." /></div>
+        </div>
+        <div class="form-row">
+          <div><label>Date</label><input id="resDateInput" type="date" /></div>
+          <div><label>Time</label><input id="resTimeInput" type="time" value="19:00" /></div>
+        </div>
+        <div><label>Party size</label><select id="resPartyInput"><option>2 guests</option><option>1 guest</option><option>3 guests</option><option>4 guests</option><option>5 guests</option><option>6+ guests</option></select></div>
+        <div><label>Notes (optional)</label><input id="resNoteInput" placeholder="Terrace, birthday, allergies..." /></div>
+        <button class="btn btn-primary" type="submit">Confirm Reservation</button>
+      </form>
+      <div id="resListEl" style="margin-top:12px;display:grid;gap:8px"></div>
+    </div>
+    <div class="panel" id="reviewsSec">
+      <h3>Guest love ⭐ 4.8</h3>
+      <p class="muted">Real reviews stored in our backend. Leave yours!</p>
+      <div class="reviews" id="reviewsEl" style="grid-template-columns:1fr"></div>
+      <form class="form" id="revFormEl">
+        <div class="form-row">
+          <div><label>Your name</label><input id="revNameInput" placeholder="Marie" /></div>
+          <div><label>Stars</label><select id="revStarsInput"><option value="5">★★★★★</option><option value="4">★★★★</option><option value="3">★★★</option></select></div>
+        </div>
+        <div><label>Review</label><input id="revTextInput" placeholder="What did you love?" /></div>
+        <button class="btn btn-ghost" type="submit">Post Review</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="section split" id="visitSec">
+    <div class="panel">
+      <h3>Visit us 📍</h3>
+      <p class="muted">Les Canelles Rd, Mahé, Seychelles<br/>Daily 11:00 — 22:00 · Kitchen closes 21:30<br/>+248 252 7260</p>
+      <p style="font-size:14px">🐟 Fresh catch daily · 🌱 Veg options · 🍹 Fresh coconut · 👶 Family friendly · 🌅 Sunset terrace</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-primary btn-small" onclick="openChat(true)">Chat for directions</button><button class="btn btn-ghost btn-small" onclick="openOrders()">Track my order</button></div>
+    </div>
+    <div class="panel">
+      <h3>How ordering works 🛒</h3>
+      <p class="muted"><b>1.</b> Add dishes → <b>2.</b> Cart → checkout with name & phone → <b>3.</b> Show order code at counter / await takeaway. Orders + reservations + reviews are saved in our backend (kv store) — full-stack, persistent.</p>
+      <p style="font-size:13px"><span class="kbd">Tip</span> Type in Perry chat: <i>"add grilled octopus"</i> or <i>"vegetarian"</i> — it orders for you!</p>
+    </div>
+  </div>
+
+  <div class="footer"><div class="footer-in">
+    <div><img class="foot-logo" src="src/images/logo.png" alt="PERRY'S GRILLZ logo" /><span style="opacity:.8;font-size:14px">Fish Deli & Fresh Food.<br/>All 20 menu photos: real dishes from our kitchen gallery, enhanced to HD.</span></div>
+    <div><b>Hours</b><br/><span style="font-size:14px;opacity:.85">Daily 11:00 — 22:00<br/>Les Canelles Rd, Mahé<br/>+248 252 7260</span></div>
+    <div><b>Backend</b><br/><span style="font-size:14px;opacity:.85">Orders · Reservations · Reviews: shared Supabase backend (RLS-secured) when connected, local otherwise — see ⚙️ Backend.<br/>Perry bot: rule-based + AI fallback.</span></div>
+  </div></div>
+
+  <!-- Cart drawer -->
+  <div class="drawer" id="drawerEl">
+    <div class="drawer-bg" onclick="openDrawer(false)"></div>
+    <div class="drawer-panel">
+      <div class="drawer-head"><b>🛒 Your Order</b><button class="btn btn-ghost btn-small" onclick="openDrawer(false)">Close</button></div>
+      <div class="drawer-body" id="cartBodyEl"></div>
+     <div class="drawer-foot">
+  <div style="display:flex;justify-content:space-between"><span class="muted">Total</span><b id="cartTotalEl">Rs 0</b></div>
+  <div class="form-row"><div><label>Your name</label><input id="ordNameInput" placeholder="Name"/></div><div><label>Phone</label><input id="ordPhoneInput" placeholder="Phone"/></div></div>
+  <div class="form-row"><div><label>Type</label><select id="ordTypeInput"><option>Dine-in</option><option>Takeaway</option><option>Delivery</option></select></div><div><label>Note</label><input id="ordNoteInput" placeholder="No chili, etc."/></div></div>
+  <div><label>Payment method</label>
+    <select id="ordPayInput">
+      <option value="cash">💵 Cash on delivery / at counter</option>
+      <option value="card">💳 Card (pay at counter)</option>
+      <option value="transfer">🏦 Bank transfer</option>
+    </select>
+  </div>
+  <button class="btn btn-primary" id="checkoutBtn">Place Order</button>
+  <button class="btn btn-ghost btn-small" onclick="openDrawer(false);openChat(true)">Need help? Ask Perry</button>
+</div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modalEl"><div class="modal-bg" onclick="closeModal()"></div><div class="modal-box" id="modalBoxEl"></div></div>
+
+  <!-- Auth / Profile modal -->
+<div class="modal" id="authModalEl">
+  <div class="modal-bg" onclick="document.getElementById('authModalEl').classList.remove('open')"></div>
+  <div class="modal-box" id="authModalBoxEl"></div>
+</div>
+  <!-- Chatbot -->
+  <button class="chat-fab" onclick="openChat(document.getElementById('chatWinEl').classList.contains('open')?false:true)"><img src="src/images/coconut-bot.jpg" alt="Chat with Perry" /><span class="ping" id="chatFabPing"></span></button>
+  <div class="chat-win" id="chatWinEl">
+    <div class="chat-head"><div class="avatar"><img src="src/images/coconut-bot.jpg" alt="Perry" /></div><div><b>Perry · Grill Helper</b><br/><span style="font-size:12px;opacity:.85">● online · </span></div><button style="margin-left:auto;background:rgba(255,255,255,.2);border:0;color:#fff;border-radius:99px;width:32px;height:32px;cursor:pointer" onclick="openChat(false)">✕</button></div>
+    <div class="chat-body" id="chatBodyEl"></div>
+    <div class="chat-quick"><button class="chip" data-q="Popular dishes">🔥 Popular</button><button class="chip" data-q="Vegetarian">🌱 Veg</button><button class="chip" data-q="Opening hours">🕦 Hours</button><button class="chip" data-q="Book a table">📅 Book</button></div>
+    <div class="chat-input"><input id="chatTextInput" placeholder="Ask Perry... try 'add lobster'" /><button class="btn btn-primary" id="chatSendBtn">Send</button></div>
+  </div>
+
+  <div class="toast" id="toastEl"></div>
+
+  <style>html{color-scheme:light}body{text-align:left}</style>
+
+  <!-- Scripts must be loaded in this specific order -->
+   <script src="src/menu.js"></script>
+<script src="src/supabase.js"></script>
+<script src="src/auth.js"></script>
+<script src="src/store.js"></script>
+<script src="src/chatbot.js"></script>
+<script src="src/app.js"></script>
+</body>
+</html>

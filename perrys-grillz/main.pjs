@@ -1,0 +1,10 @@
+// PERRY'S GRILLZ — Island Restaurant
+// Full-stack: frontend + kv persistence + AI chatbot
+
+$meta
+  title = PERRY'S GRILLZ | Island Kitchen & Grill
+  description = Fresh island seafood, Creole curries, tropical desserts & mountain-view dining at PERRY'S GRILLZ. Order online, book a table, or chat with our grill bot.
+  tags = restaurant, creole, seafood, menu, chatbot, ordering, reservation
+
+kv = {import:kv-plugin}
+generateText = {import:ai-text-plugin}
